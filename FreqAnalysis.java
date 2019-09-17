@@ -5,25 +5,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class FreqAnalysis {
 
 	static byte[] data;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		//Intitialize
 		Scanner sc = null;
 		File file;
 		try {
 			file = new File(FreqAnalysis.class.getResource("/res/beyondgoodandevil.txt").toURI());
 			sc = new Scanner(file);
 		} catch (URISyntaxException | FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		
+		//2D array, in order to keep letters attached to frequencies
 		int[][] freqs = new int[2][26];
 		
 		for(int i = 'A'; i<='Z'; i++) {
@@ -74,8 +74,5 @@ public class FreqAnalysis {
 		for(int i = 0; i<5; i++) {
 			System.out.println((char)freqs[0][i] + ": " + freqs[1][i]);
 		}
-		
-		
 	}
-
 }
