@@ -109,7 +109,7 @@ public class FreqAnalysisPairs {
         }
 		
 		//Print Results
-		System.out.println("\nTop 10:\n");
+		System.out.println("\nTop 10 Consonant Pairs:\n");
 		for(int i = freqSortArray.length-1; i>freqSortArray.length-11; i--) {
 			System.out.println(comboSortArray[i] + ": " + freqSortArray[i]);
 		}

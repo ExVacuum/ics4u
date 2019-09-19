@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class FreqAnalysis {
 
