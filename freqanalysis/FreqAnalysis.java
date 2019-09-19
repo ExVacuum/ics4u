@@ -1,4 +1,4 @@
-
+//Silas Bartha, Sept 2019, Frequency Analysis
 package freqanalysis;
 
 import java.io.File;

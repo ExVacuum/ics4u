@@ -19,7 +19,7 @@ public class FreqAnalysisPairs {
 		String text = "";
 
 		try {
-			file = new File(FreqAnalysis.class.getResource("/res/beyondgoodandevil.txt").toURI());
+			file = new File(FreqAnalysisPairs.class.getResource("/res/beyondgoodandevil.txt").toURI());
 			data = Files.readAllBytes(file.toPath());
 			text = new String(data, "UTF-8").toUpperCase();
 					
@@ -109,13 +109,8 @@ public class FreqAnalysisPairs {
         }
 		
 		//Print Results
-		System.out.println("\nTop 5:\n");
-		for(int i = freqSortArray.length-1; i>freqSortArray.length-6; i--) {
-			System.out.println(comboSortArray[i] + ": " + freqSortArray[i]);
-		}
-		
-		System.out.println("\nBottom 5:\n");
-		for(int i = 0; i<5; i++) {
+		System.out.println("\nTop 10:\n");
+		for(int i = freqSortArray.length-1; i>freqSortArray.length-11; i--) {
 			System.out.println(comboSortArray[i] + ": " + freqSortArray[i]);
 		}
 	}
