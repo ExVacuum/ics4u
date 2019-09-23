@@ -29,7 +29,7 @@ public class FreqAnalysis {
 			freqs[0][i-'A']=i;
 		}
 		
-		
+		//Tally up all letters in the array
 		while(sc.hasNextLine()) {
 			String line = sc.nextLine();
 			for(int i=0; i<line.length();i++) {
@@ -43,20 +43,25 @@ public class FreqAnalysis {
 			}
 		}
 		
+		//Print Frequencies
 		System.out.println("Letter Frequencies:\n");
 		for(int i = 0; i<freqs[0].length; i++) {
 			System.out.println((char)freqs[0][i] + ": " + freqs[1][i]);
 		}
 		
-		for (int i = 0; i < freqs[0].length; i++) 
-        {
-            for (int j = i + 1; j < freqs[0].length; j++) 
-            {
-                if (freqs[1][i] > freqs[1][j]) 
-                {
+		//Sort both arrays by the values in the frequency array
+		for (int i = 0; i < freqs[0].length; i++){
+			
+            for (int j = i + 1; j < freqs[0].length; j++){
+            	//If greater than an element
+                if (freqs[1][i] > freqs[1][j]){
+                	
+                	//Swap values of frequencies
                 	int temp = freqs[0][i];
                     freqs[0][i] = freqs[0][j];
                     freqs[0][j] = temp;
+                    
+                    //Swap values of characters as well
                     temp = freqs[1][i];
                     freqs[1][i] = freqs[1][j];
                     freqs[1][j] = temp;

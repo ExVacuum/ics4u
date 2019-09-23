@@ -13,26 +13,43 @@ public class FreqAnalysisPairs {
 		
 	//I: Setup
 		
-		//Creating String From File
+		//Reading in file, and creating one giant string
 		File file;
 		byte[] data;
 		String text = "";
 
 		try {
+			
+			//Get file from res folder
 			file = new File(FreqAnalysisPairs.class.getResource("/res/beyondgoodandevil.txt").toURI());
+			
+			//Place all bytes into array
 			data = Files.readAllBytes(file.toPath());
+			
+			//Create string from byte array, converting all letters into uppercase for ease later
 			text = new String(data, "UTF-8").toUpperCase();
 					
 		} catch (URISyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch(NullPointerException e){
+			
+			//End program if file is not found
+			System.out.println("File not found!");
+			e.printStackTrace();
+			System.exit(0);
 		}
 		
 		//Initialize Letter Pairing Positions
 		String[][] combos = new String[26][26];
+		
+		//Initialize frequency array
 		int[][] freqs = new int[26][26];
+		
+		//Place letter pairings into combo array
 		for(int i = 0; i < 26; i++) {
 			for(int j = 0; j < 26; j++) {
+				
+				//e.g. i = 0, j = 1; combos[i][j] = "AB"
 				combos[i][j]= new String(new char[]{(char)(i+'A'), (char)(j+'A')});
 			}
 		}
@@ -41,7 +58,11 @@ public class FreqAnalysisPairs {
 		
 		//Get Pairing Frequencies
 		for(int i = 0; i<text.length()-1; i++) {
+			
+			//Cut out 2-character substring
 			String sub = text.substring(i, i+2);
+			
+			//Increase the appropriate combo frequency
 			for (int cx = 0; cx < combos[0].length; cx++) {
 				for (int cy = 0; cy < combos[1].length; cy++) {
 				    if (combos[cx][cy].equals(sub)) {
@@ -51,7 +72,7 @@ public class FreqAnalysisPairs {
 			}
 		}
 		
-		//Initialize ArrayLists for Pairings and Frequencies
+		//Setup ArrayLists for Pairings and Frequencies, while also printing out frequencies
 		ArrayList<String> combosToSort = new ArrayList<String>();
 		ArrayList<Integer> freqsToSort = new ArrayList<Integer>();
 		
@@ -65,6 +86,7 @@ public class FreqAnalysisPairs {
 				//Remove All Pairings Containing Vowels
 			    boolean shouldSort = true;
 			    for(int i = 0; i < combos[cx][cy].length(); i++) {
+			    	
 			    	if("AEIOU".contains(Character.toString(combos[cx][cy].charAt(i)))) shouldSort = false;
 			    }
 			    if(shouldSort) {
@@ -92,10 +114,8 @@ public class FreqAnalysisPairs {
 		
 		//Sort
 		for (int i = 0; i < freqSortArray.length; i++) {
-            for (int j = i + 1; j < freqSortArray.length; j++) 
-            {
-                if (freqSortArray[i] > freqSortArray[j]) 
-                {
+            for (int j = i + 1; j < freqSortArray.length; j++) {
+                if (freqSortArray[i] > freqSortArray[j]) {
                 	
                 	//What You Do to Frequencies Must Also be Done to The Positioning of Pairings
                 	int temp = freqSortArray[i];
