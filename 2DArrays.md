@@ -1,42 +1,46 @@
 1) How many elements can be stored in each of the following arrays?
 
-int [ ] [ ] array = new int [3] [4]; _12_
+```java
+int [ ] [ ] array = new int [3] [4];
+``` 
+**12**
 
-String [ ] [ ] names = new String [5] [4] _20_
+```java
+String [ ] [ ] names = new String [5] [4];
+```
+**20**
 
-int [ ] [ ] list = { 6, 5, 4, 6}, _16_
-
-                   { 0, 3, 5, 6},
-
-                   { 4, 7, 8, 1},
-
-                   { 5, 4, 9, 2};
+```java
+int [ ] [ ] list = { 6, 5, 4, 6}, { 0, 3, 5, 6}, { 4, 7, 8, 1}, { 5, 4, 9, 2};
+```
+**16**
 
 2) 
 
 a) Declare an array of double with 10 rows and 5 columns.
 
-_Double[ ][ ] array = new double[10][5];_
+`Double[ ][ ] array = new double[10][5];`
 
 b) Declare an array for a tic tac toe board.
 
-_Int[][] board = new int[3][3];_
+`Int[][] board = new int[3][3];`
 
 Given the following declaration and initialization, determine what will be outputted.
 
+```java
 int [ ] [ ] array = new int [3][5];
 
 int k=0;
 
 for (int i = 0; i < 3; i++) {
 
-for (int j = 0; j < 5; j++) {
+  for (int j = 0; j < 5; j++) {
 
-k = k + 1;
+    k = k + 1;
 
-array[i][j] = k;
+    array[i][j] = k;
 
-}
+  }
 
 }
 
@@ -46,33 +50,23 @@ for (int j = 4; j > 0; j--) {
 System.out.print(array[1][j]);
 
 }
+```
 
-_10987_
+**10987**
 
 b) 
+```java
 for (int i = 0; i < 3; i++) {
 
 System.out.print(array[i][4]);
 
 }
+```
 
-_51015_
+**51015**
 
-c) for (int i = 1; i < 2; i++) {
-
-for (int j = 4; j > 0; j--) {
-
-System.out.print(array[i][j]);
-
-}
-
-System.out.println();
-
-}
-
-_10987 (Newline afterwards)_
-
-d) 
+c) 
+```java
 for (int i = 1; i < 2; i++) {
 
 for (int j = 4; j > 0; j--) {
@@ -85,6 +79,25 @@ System.out.println();
 
 }
 
-_10987 (Newline afterwards)_
+```
 
-**Isn't this the same as c)?**
+**10987 (Newline afterwards)**
+
+d) 
+```java
+for (int i = 1; i < 2; i++) {
+
+  for (int j = 4; j > 0; j--) {
+
+    System.out.print(array[i][j]);
+
+  }
+
+  System.out.println();
+
+}
+```
+
+**10987 (Newline afterwards)**
+
+_Isn't this the same as c)?_
