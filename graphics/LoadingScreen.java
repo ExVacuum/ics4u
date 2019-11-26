@@ -23,6 +23,9 @@ public class LoadingScreen extends JFrame{
     long nextTick = GetTickCount();
     int loops;
 
+    //Taskbar
+    Taskbar taskbar;
+
     //Graphical Interpolation
     float interpolation;
 
@@ -33,6 +36,7 @@ public class LoadingScreen extends JFrame{
     float opacity = 1f;
 
     //Fade Out Control
+    long timerStartTime = System.currentTimeMillis();
     Timer fadeTimer = new Timer(10000, new FadeTimerListener());
     boolean fadeOut;
 
@@ -75,6 +79,9 @@ public class LoadingScreen extends JFrame{
             arc.step();
         }
 
+        //Taskbar Progress
+        taskbar.setWindowProgressValue(this,(int)(((System.currentTimeMillis()-timerStartTime)/10000.0)*100));
+
         //Fade Out if Necessary
         if(fadeOut){
            opacity -= 0.01;
@@ -96,6 +103,9 @@ public class LoadingScreen extends JFrame{
 
     //Window Initialization
     void init(){
+
+        //Taskbar for progress
+        taskbar = Taskbar.getTaskbar();
 
         //Make Transparent
         setUndecorated(true);
