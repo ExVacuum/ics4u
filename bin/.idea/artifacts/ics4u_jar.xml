@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ics4u:jar">
+    <output-path>C://artifacts/ics4u_jar</output-path>
+    <root id="archive" name="ics4u.jar">
+      <element id="module-output" name="ics4u" />
+      <element id="extracted-dir" path="D:/Desktop/miglayout-4.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
