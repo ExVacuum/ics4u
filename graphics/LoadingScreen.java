@@ -1,9 +1,11 @@
+//Silas Bartha, Nov. 27 2019, loading screen program
 package graphics;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 
 public class LoadingScreen extends JFrame{
@@ -92,7 +94,7 @@ public class LoadingScreen extends JFrame{
     void draw(float interpolation){
 
         //Exit Once Invisible
-        if(opacity < (1/255.0)){
+        if(opacity < (0.02)){
             System.exit(0);
         }
 
@@ -112,7 +114,7 @@ public class LoadingScreen extends JFrame{
         setBackground(new Color(0,0,0,0));
 
         //Set Dimensions
-        setSize(100,100);
+        setSize(800,800);
         setLocationRelativeTo(null);
         renderer = new Renderer();
         renderer.setOpaque(false);
@@ -124,10 +126,41 @@ public class LoadingScreen extends JFrame{
         setVisible(true);
 
         //Setup Arcs
-        arcs.add(new LoadingArc(10,5,5,Color.RED));
-        arcs.add(new LoadingArc(20,5,-6,Color.BLUE));
-        arcs.add(new LoadingArc(30,5,-2,Color.GREEN));
-        arcs.add(new LoadingArc(40,5,4,Color.YELLOW));
+        arcs.add(new LoadingArc(10,3,1,Color.WHITE));
+        arcs.add(new LoadingArc(20,3,-8,Color.WHITE));
+        arcs.add(new LoadingArc(30,3,2,Color.WHITE));
+        arcs.add(new LoadingArc(40,3,-7,Color.WHITE));
+        arcs.add(new LoadingArc(50,3,3,Color.WHITE));
+        arcs.add(new LoadingArc(60,3,-6,Color.WHITE));
+        arcs.add(new LoadingArc(70,3,4,Color.WHITE));
+        arcs.add(new LoadingArc(80,3,-5,Color.WHITE));
+        arcs.add(new LoadingArc(90,3,5,Color.WHITE));
+        arcs.add(new LoadingArc(100,3,-4,Color.WHITE));
+        arcs.add(new LoadingArc(110,3,6,Color.WHITE));
+        arcs.add(new LoadingArc(120,3,-3,Color.WHITE));
+        arcs.add(new LoadingArc(130,3,7,Color.WHITE));
+        arcs.add(new LoadingArc(140,3,-2,Color.WHITE));
+        arcs.add(new LoadingArc(150,3,8,Color.WHITE));
+        arcs.add(new LoadingArc(160,3,-1,Color.WHITE));
+        arcs.add(new LoadingArc(170,3,8,Color.WHITE));
+        arcs.add(new LoadingArc(180,3,-1,Color.WHITE));
+        arcs.add(new LoadingArc(190,3,7,Color.WHITE));
+        arcs.add(new LoadingArc(200,3,-2,Color.WHITE));
+        arcs.add(new LoadingArc(210,3,6,Color.WHITE));
+        arcs.add(new LoadingArc(220,3,-3,Color.WHITE));
+        arcs.add(new LoadingArc(230,3,5,Color.WHITE));
+        arcs.add(new LoadingArc(240,3,-4,Color.WHITE));
+        arcs.add(new LoadingArc(250,3,4,Color.WHITE));
+        arcs.add(new LoadingArc(260,3,-5,Color.WHITE));
+        arcs.add(new LoadingArc(270,3,3,Color.WHITE));
+        arcs.add(new LoadingArc(280,3,-6,Color.WHITE));
+        arcs.add(new LoadingArc(290,3,2,Color.WHITE));
+        arcs.add(new LoadingArc(300,3,-7,Color.WHITE));
+        arcs.add(new LoadingArc(310,3,1,Color.WHITE));
+        arcs.add(new LoadingArc(320,3,-8,Color.WHITE));
+
+        renderer.repaint();
+
 
         //Start Fade Timer
         fadeTimer.start();
@@ -143,7 +176,7 @@ public class LoadingScreen extends JFrame{
 
         //Radius, Size, Angle, Color, and Rotational Speed
         int rad, size;
-        double angle = 0, spd;
+        double angle = 90, spd;
         Color c;
 
         LoadingArc(int rad, int size, double spd, Color c){
@@ -160,11 +193,10 @@ public class LoadingScreen extends JFrame{
 
         //Draw Arc Based on Interpolation
         void draw(Graphics2D g2, float interpolation){
-            g2.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), (int)(opacity*255)));
+            g2.setColor(new Color(Color.HSBtoRGB( (float)((System.currentTimeMillis()-timerStartTime)/(5000.0+rad*5)),1.0f,1.0f)));
             g2.setStroke(new BasicStroke(size));
-            g2.drawArc(50-rad,50-rad,rad*2,rad*2, (int)(angle-60 + (spd*interpolation)), 120);
+            g2.drawArc(400-rad,400-rad,rad*2,rad*2, (int)(angle + (spd*interpolation)), (int)((System.currentTimeMillis()-timerStartTime)/10000.0*360));
         }
-
     }
 
     //Renderer
@@ -174,16 +206,26 @@ public class LoadingScreen extends JFrame{
         float interpolation = 0f;
 
         @Override
-        public void paintComponent(Graphics g){
-            Graphics2D g2 = (Graphics2D)g;
-
-            //Anti-alias
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-
+        public void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g;
             super.paintComponent(g2);
 
+            g2.setComposite(AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, opacity));
+
+            //Anti-alias
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setColor(Color.DARK_GRAY);
+            g2.fill(new Arc2D.Double(70, 70,
+                    660,
+                    660,
+                    Math.max(270 - (int) ((System.currentTimeMillis() - timerStartTime) / 10000.0 * 180), 90),
+                    Math.min(2 * (int) ((System.currentTimeMillis() - timerStartTime) / 10000.0 * 180), 360),
+                    Arc2D.CHORD));
+
             //Draw Arcs
-            for(LoadingArc arc: arcs){
+            for (LoadingArc arc : arcs) {
                 arc.draw(g2, interpolation);
             }
         }
