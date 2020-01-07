@@ -1,4 +1,4 @@
-package starfield;
+package tobemarked.starfield;
 
 import java.util.Random;
 

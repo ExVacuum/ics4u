@@ -11,7 +11,9 @@ import java.util.ArrayList;
 public class LoadingScreen extends JFrame{
 
     public static void main(String[] args) {
-        new LoadingScreen();
+        while (true){
+            new LoadingScreen();
+        }
     }
 
     //ArrayList of arc objects
@@ -72,6 +74,7 @@ public class LoadingScreen extends JFrame{
             //Unlimited Graphics FPS
             draw(interpolation);
         }
+
     }
 
     //Steps

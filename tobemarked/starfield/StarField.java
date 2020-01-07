@@ -1,5 +1,6 @@
 //Silas Bartha Oct. 2, 2019, Starfield
-package starfield;
+package tobemarked.starfield;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,7 +21,7 @@ public class StarField  {
 	}
 
 	/****************/
-	/* Variables       */
+	/* Variables     */
 	/****************/
 
 	//window sizes
@@ -40,7 +41,7 @@ public class StarField  {
 	//x and y position of stars
 	static final int numStars =600;
 	
-	ArrayList<Star> starCollection = new ArrayList<Star>(); //make an array list of stars 
+	ArrayList<Star> starCollection = new ArrayList<Star>(); //make an array list of stars
 
 	//x and y position of centre of screen
 	int cx =400;  //estimate for now (to avoid errors)
@@ -93,7 +94,7 @@ public class StarField  {
 	/**************************************/
 	/* JPanel inner class  to draw graphics */
 	/**************************************/
-	//
+
 	private class GrPanel extends JPanel{
 		
 		GrPanel() {} // empty constructor. You could set the background colour here.

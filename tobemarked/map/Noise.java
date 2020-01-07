@@ -1,7 +1,7 @@
 //<pre>
 // Copyright 2001 Ken Perlin
 
-package game;
+package tobemarked.map;
 
 /** 
     Computes Perlin Noise for one, two, and three dimensions.<p>

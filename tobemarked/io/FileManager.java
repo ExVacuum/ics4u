@@ -1,10 +1,9 @@
-package io;
+package tobemarked.io;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.FileAlreadyExistsException;
 
 public class FileManager {
 
